@@ -11,4 +11,25 @@ router.get('/', function(req, res, next) {
   res.render('index', { title: 'Express', optionLinks: navbar.getOptions() });
 });
 
+router.get('/clients', function (req, res, next) {
+  var navbar = new NavbarHelper();
+  navbar.setOptions("default");
+  navbar.setActive("Clients");
+  res.render('clients', {title: 'Clients', optionLinks: navbar.getOptions()});
+});
+
+router.get('/employees', function (req, res, next) {
+  var navbar = new NavbarHelper();
+  navbar.setOptions("default");
+  navbar.setActive("Employees");
+  res.render('employees', {title: 'Employees', optionLinks: navbar.getOptions()});
+});
+
+router.get('/about', function (req, res, next) {
+  var navbar = new NavbarHelper();
+  navbar.setOptions("default");
+  navbar.setActive("About");
+  res.render('about', {title: 'About', optionLinks: navbar.getOptions()});
+});
+
 module.exports = router;
