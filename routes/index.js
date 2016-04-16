@@ -6,10 +6,9 @@ var router = express.Router();
 router.get('/', function(req, res, next) {
 
   var navbar = new NavbarHelper();
-  navbar.addOption("Home", "/", true);
-  navbar.addOption("SomeLink", "#", false);
-  
-  res.render('index', { title: 'Express', optionLinks: navbar.options });
+  navbar.setOptions("default");
+  navbar.setActive("Home");
+  res.render('index', { title: 'Express', optionLinks: navbar.getOptions() });
 });
 
 module.exports = router;
