@@ -1,5 +1,6 @@
 var express = require('express');
 var NavbarHelper = require('./lib/navbarHelper');
+var MysqlConnection = require('./lib/mysqlconnection');
 var router = express.Router();
 
 /* GET home page. */
@@ -8,6 +9,10 @@ router.get('/', function(req, res, next) {
   var navbar = new NavbarHelper();
   navbar.setOptions("default");
   navbar.setActive("Home");
+
+  var mysql = new MysqlConnection();
+  mysql.printRows();
+
   res.render('index', { title: 'Express', optionLinks: navbar.getOptions() });
 });
 
