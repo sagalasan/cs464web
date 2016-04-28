@@ -22,3 +22,8 @@ exports.getTransactionsQuery = function()
 {
   return "SELECT * FROM cs464_transactions ORDER BY date DESC LIMIT 100";
 };
+
+exports.getItemsQuery = function()
+{
+  return "SELECT * FROM cs464_items";
+};

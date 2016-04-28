@@ -14,6 +14,18 @@ router.get('/', function(req, res, next) {
   res.render('index', { title: 'Home', optionLinks: navbar.getOptions() });
 });
 
+router.get('/items', function(req, res, next)
+{
+  var navbar = new NavbarHelper();
+  navbar.setOptions('default');
+  navbar.setActive('Items');
+
+  database.getItems(function(err, query, rows)
+  {
+    res.render('items', {title: 'Items', optionLinks: navbar.getOptions(), query: query, items: rows});
+  });
+});
+
 router.get('/transactions', function(req, res, nex)
 {
   var navbar = new NavbarHelper();

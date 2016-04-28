@@ -1,0 +1,23 @@
+{{>navbar}}
+
+<div class="container-fluid">
+    <div class="container">
+        <h1>Items</h1>
+        <table class="table table-bordered table-condensed">
+            <tr>
+                <th>Item ID</th>
+                <th>Name</th>
+                <th>Description</th>
+                <th>Price</th>
+            </tr>
+            {{#items}}
+                <tr>
+                    <td>{{item_id}}</td>
+                    <td>{{name}}</td>
+                    <td>{{description}}</td>
+                    <td>${{price}}</td>
+                </tr>
+            {{/items}}
+        </table>
+    </div>
+</div>

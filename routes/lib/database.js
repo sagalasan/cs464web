@@ -40,6 +40,12 @@ exports.getTransactions = function(callback)
   getRows(query, callback);
 };
 
+exports.getItems = function(callback)
+{
+  var query = queries.getItemsQuery();
+  getRows(query, callback);
+};
+
 function getRows(query, callback)
 {
   pool.getConnection(function (err, connection)
