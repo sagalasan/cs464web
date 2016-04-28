@@ -34,6 +34,12 @@ exports.getEmployee = function(employee_id, callback)
   getRows(query, callback);
 };
 
+exports.getTransactions = function(callback)
+{
+  var query = queries.getTransactionsQuery();
+  getRows(query, callback);
+};
+
 function getRows(query, callback)
 {
   pool.getConnection(function (err, connection)

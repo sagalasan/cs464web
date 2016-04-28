@@ -3,5 +3,28 @@
 <div class="container-fluid">
     <div class="container">
         <h1>Transactions</h1>
+        <p>These are the last 100 transactions</p>
+        <table class="table table-bordered table-condensed">
+            <tr>
+                <th>Item ID</th>
+                <th>Client ID</th>
+                <th>Employee ID</th>
+                <th>Date</th>
+                <th>Quantity</th>
+                <th>Price</th>
+                <th>Order type</th>
+            </tr>
+            {{#transactions}}
+                <tr>
+                    <td>{{item_id}}</td>
+                    <td>{{client_id}}</td>
+                    <td>{{employee_id}}</td>
+                    <td>{{date}}</td>
+                    <td>{{quantity}}</td>
+                    <td>{{price}}</td>
+                    <td>{{order_type}}</td>
+                </tr>
+            {{/transactions}}
+        </table>
     </div>
 </div>

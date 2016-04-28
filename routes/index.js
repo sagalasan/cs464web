@@ -20,7 +20,10 @@ router.get('/transactions', function(req, res, nex)
   navbar.setOptions('default');
   navbar.setActive('Transactions');
 
-  res.render('transactions', {title: 'Transactions', optionLinks: navbar.getOptions()});
+  database.getTransactions(function(err, query, rows)
+  {
+    res.render('transactions', {title: 'Transactions', optionLinks: navbar.getOptions(), query: query, transactions: rows});
+  });
 });
 
 router.get('/clients', function (req, res, next)
