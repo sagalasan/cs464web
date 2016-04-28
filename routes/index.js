@@ -14,6 +14,15 @@ router.get('/', function(req, res, next) {
   res.render('index', { title: 'Home', optionLinks: navbar.getOptions() });
 });
 
+router.get('/transactions', function(req, res, nex)
+{
+  var navbar = new NavbarHelper();
+  navbar.setOptions('default');
+  navbar.setActive('Transactions');
+
+  res.render('transactions', {title: 'Transactions', optionLinks: navbar.getOptions()});
+});
+
 router.get('/clients', function (req, res, next)
 {
   var navbar = new NavbarHelper();

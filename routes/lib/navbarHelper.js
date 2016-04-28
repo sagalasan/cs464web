@@ -11,6 +11,7 @@ function NavbarHelper() {
     if(value === "default")
     {
       options.addOption("Home", "/", false);
+      options.addOption("Transactions", "/transactions", false);
       options.addOption("Clients", "/clients", false);
       options.addOption("Employees", "/employees", false);
       options.addOption("About", "/about", false);
