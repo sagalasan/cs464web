@@ -1,20 +1,22 @@
 {{> navbar }}
 
-<div class="container">
-    <h1>Employees</h1>
+<div class="container-fluid">
+    <div class="container">
+        <h1>Employees</h1>
 
-    <table class="table table-bordered table-condensed">
-        <tr>
-            <th>Employee ID</th>
-            <th>Name</th>
-            <th>Address</th>
-        </tr>
-        {{#employees}}
+        <table class="table table-bordered table-condensed">
             <tr>
-                <td>{{employee_id}}</td>
-                <td>{{first_name}} {{last_name}}</td>
-                <td>{{address}}</td>
+                <th>Employee ID</th>
+                <th>Name</th>
+                <th>Address</th>
             </tr>
-        {{/employees}}
-    </table>
+            {{#employees}}
+                <tr>
+                    <td>{{employee_id}}</td>
+                    <td>{{first_name}} {{last_name}}</td>
+                    <td>{{address}}</td>
+                </tr>
+            {{/employees}}
+        </table>
+    </div>
 </div>

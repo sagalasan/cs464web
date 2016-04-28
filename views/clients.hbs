@@ -1,22 +1,23 @@
 {{> navbar }}
 
-<div class="container">
-    <h1>Clients</h1>
+<div class="container-fluid">
+    <div class="container">
+        <h1>Clients</h1>
 
-    <table class="table table-bordered table-condensed">
-        <tr>
-            <th>Client ID</th>
-            <th>Name</th>
-            <th>Address</th>
-        </tr>
-        {{#users}}
+        <table class="table table-bordered table-condensed">
             <tr>
-                <td>{{client_id}}</td>
-                <td>{{name}}</td>
-                <td>{{address}}</td>
+                <th>Client ID</th>
+                <th>Name</th>
+                <th>Address</th>
             </tr>
-        {{/users}}
+            {{#users}}
+                <tr>
+                    <td>{{client_id}}</td>
+                    <td>{{name}}</td>
+                    <td>{{address}}</td>
+                </tr>
+            {{/users}}
 
-    </table>
-
+        </table>
+    </div>
 </div>
