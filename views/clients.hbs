@@ -1,5 +1,22 @@
 {{> navbar }}
 
 <div class="container">
-    <p>Welcome to clients!</p>
+    <h1>Clients</h1>
+
+    <table class="table table-bordered table-condensed">
+        <tr>
+            <th>Client ID</th>
+            <th>Name</th>
+            <th>Address</th>
+        </tr>
+        {{#users}}
+            <tr>
+                <td>{{client_id}}</td>
+                <td>{{name}}</td>
+                <td>{{address}}</td>
+            </tr>
+        {{/users}}
+
+    </table>
+
 </div>

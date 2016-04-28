@@ -1,6 +1,7 @@
 var express = require('express');
 var NavbarHelper = require('./lib/navbarHelper');
-var MysqlConnection = require('./lib/mysqlconnection');
+var queries = require('./lib/queries');
+var database = require('./lib/database');
 var router = express.Router();
 
 /* GET home page. */
@@ -10,24 +11,30 @@ router.get('/', function(req, res, next) {
   navbar.setOptions("default");
   navbar.setActive("Home");
 
-  var mysql = new MysqlConnection();
-  mysql.printRows();
-
-  res.render('index', { title: 'Express', optionLinks: navbar.getOptions() });
+  res.render('index', { title: 'Home', optionLinks: navbar.getOptions() });
 });
 
-router.get('/clients', function (req, res, next) {
+router.get('/clients', function (req, res, next)
+{
   var navbar = new NavbarHelper();
   navbar.setOptions("default");
   navbar.setActive("Clients");
-  res.render('clients', {title: 'Clients', optionLinks: navbar.getOptions()});
+
+  database.getClients(function(err, query, rows)
+  {
+    res.render('clients', { title: 'Clients', optionLinks: navbar.getOptions(), query: query , users: rows});
+  });
 });
 
 router.get('/employees', function (req, res, next) {
   var navbar = new NavbarHelper();
   navbar.setOptions("default");
   navbar.setActive("Employees");
-  res.render('employees', {title: 'Employees', optionLinks: navbar.getOptions()});
+
+  database.getEmployees(function(err, query, rows)
+  {
+    res.render('employees', {title: 'Employees', optionLinks: navbar.getOptions(), query: query, employees: rows});
+  });
 });
 
 router.get('/about', function (req, res, next) {
