@@ -14,6 +14,19 @@ router.get('/', function(req, res, next) {
   res.render('index', { title: 'Home', optionLinks: navbar.getOptions() });
 });
 
+router.get('/item/', function(req, res, next)
+{
+  var navbar = new NavbarHelper();
+  navbar.setOptions('default');
+  var id = req.query.id;
+
+  database.getItem(id, function(err, query, rows)
+  {
+    var item = rows[0];
+    res.render('item', {title: 'Item', optionLinks: navbar.getOptions(), query: query, item: item});
+  });
+});
+
 router.get('/items', function(req, res, next)
 {
   var navbar = new NavbarHelper();
@@ -38,6 +51,19 @@ router.get('/transactions', function(req, res, nex)
   });
 });
 
+router.get('/client/', function(req, res, next)
+{
+  var navbar = new NavbarHelper();
+  navbar.setOptions('default');
+  var id = req.query.id;
+
+  database.getClient(id, function(err, query, rows)
+  {
+    var client = rows[0];
+    res.render('client', {title: 'Client', optionLinks: navbar.getOptions(), query: query, client: client});
+  });
+});
+
 router.get('/clients', function (req, res, next)
 {
   var navbar = new NavbarHelper();
@@ -47,6 +73,19 @@ router.get('/clients', function (req, res, next)
   database.getClients(function(err, query, rows)
   {
     res.render('clients', { title: 'Clients', optionLinks: navbar.getOptions(), query: query , users: rows});
+  });
+});
+
+router.get('/employee/', function(req, res, next)
+{
+  var navbar = new NavbarHelper();
+  navbar.setOptions('default');
+  var id = req.query.id;
+
+  database.getEmployee(id, function(err, query, rows)
+  {
+    var employee = rows[0];
+    res.render('employee', {title: 'Employee', optionLinks: navbar.getOptions(), query: query, employee: employee});
   });
 });
 
