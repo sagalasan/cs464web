@@ -39,6 +39,17 @@ router.get('/items', function(req, res, next)
   });
 });
 
+router.get('/groups', function(req, res, next)
+{
+  var navbar = new NavbarHelper();
+  navbar.setOptions('default');
+
+  database.getGroups(function(err, query, rows)
+  {
+    res.render('groups', {title: 'Groups', optionLinks: navbar.getOptions(), query: query, groups: rows});
+  });
+});
+
 router.get('/transactions', function(req, res, nex)
 {
   var navbar = new NavbarHelper();

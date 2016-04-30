@@ -1,0 +1,23 @@
+{{>navbar}}
+
+<div class="container-fluid">
+    <div class="container">
+        <h1>Items</h1>
+        <table class="table table-bordered table-condensed">
+            <tr>
+                <th>Name</th>
+                <th>Description</th>
+            </tr>
+            {{#groups}}
+                <tr>
+                    <td><a href="/group?name={{name}}">{{name}}</a></td>
+                    <td>{{description}}</td>
+                </tr>
+            {{/groups}}
+        </table>
+    </div>
+</div>
+
+{{>queryfooter}}
+
+{{>footer}}

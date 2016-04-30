@@ -28,6 +28,11 @@ exports.getItemsQuery = function()
   return "SELECT * FROM cs464_items";
 };
 
+exports.getGroupsQuery = function()
+{
+  return "SELECT * FROM cs464_groups";
+};
+
 exports.getItemQuery = function (id)
 {
   return "SELECT * FROM cs464_items WHERE item_id = " + id;

@@ -46,6 +46,12 @@ exports.getItems = function(callback)
   getRows(query, callback);
 };
 
+exports.getGroups = function(callback)
+{
+  var query = queries.getGroupsQuery();
+  getRows(query, callback);
+};
+
 exports.getItem = function (id, callback)
 {
   var query = queries.getItemQuery(id);
