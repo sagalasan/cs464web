@@ -39,6 +39,15 @@ router.get('/items', function(req, res, next)
   });
 });
 
+router.get('/createitem', function(req, res, next)
+{
+  var navbar = new NavbarHelper();
+  navbar.setOptions('default');
+
+  res.render('createitem', {title: 'Create Item', optionLinks: navbar.getOptions()});
+});
+
+
 router.get('/groups', function(req, res, next)
 {
   var navbar = new NavbarHelper();
