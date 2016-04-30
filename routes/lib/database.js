@@ -13,58 +13,64 @@ var pool = mysql.createPool({
 exports.getClients = function(callback)
 {
   var query = queries.getClientsQuery();
-  getRows(query, callback);
+  executeQuery(query, callback);
 };
 
 exports.getEmployees = function(callback)
 {
   var query = queries.getEmployeesQuery();
-  getRows(query, callback);
+  executeQuery(query, callback);
 };
 
 exports.getClient = function(client_id, callback)
 {
   var query = queries.getSingleClient(client_id);
-  getRows(query, callback);
+  executeQuery(query, callback);
 };
 
 exports.getEmployee = function(employee_id, callback)
 {
   var query = queries.getSingleEmployee(employee_id);
-  getRows(query, callback);
+  executeQuery(query, callback);
 };
 
 exports.getTransactions = function(callback)
 {
   var query = queries.getTransactionsQuery();
-  getRows(query, callback);
+  executeQuery(query, callback);
 };
 
 exports.getItems = function(callback)
 {
   var query = queries.getItemsQuery();
-  getRows(query, callback);
+  executeQuery(query, callback);
 };
 
 exports.getGroups = function(callback)
 {
   var query = queries.getGroupsQuery();
-  getRows(query, callback);
+  executeQuery(query, callback);
 };
 
 exports.getItem = function (id, callback)
 {
   var query = queries.getItemQuery(id);
-  getRows(query, callback);
+  executeQuery(query, callback);
 };
 
-function getRows(query, callback)
+exports.createItem = function(name, description, price, callback)
+{
+  var query = queries.getCreateItemQuery(name, description, price);
+  executeQuery(query, callback);
+};
+
+function executeQuery(query, callback)
 {
   pool.getConnection(function (err, connection)
   {
     if(err) {
       console.log(err);
-      callback(true);
+      callback(true, query);
       return;
     }
 
@@ -73,7 +79,7 @@ function getRows(query, callback)
       if(err)
       {
         console.log(err);
-        callback(true);
+        callback(true, query);
         return;
       }
       callback(false, query, rows); // Successful callback

@@ -37,4 +37,21 @@ router.get('/createitem', function(req, res, next)
   res.render('createitem', {title: 'Create Item', optionLinks: navbar.getOptions()});
 });
 
+router.post('/createitem', function(req, res)
+{
+  var navbar = new NavbarHelper();
+  navbar.setOptions('default');
+  var name = req.body.name;
+  var desc = req.body.description;
+  var price = req.body.price;
+
+  database.createItem(name, desc, price, function(err, query, rows)
+  {
+    var createPass = true;
+    if(err) createPass = false;
+    console.log(query);
+    res.render('createitem', {title: 'Create Item', optionLinks: navbar.getOptions(), alertName: name, createPass: createPass})
+  });
+});
+
 module.exports = router;

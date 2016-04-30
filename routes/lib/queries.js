@@ -37,3 +37,9 @@ exports.getItemQuery = function (id)
 {
   return "SELECT * FROM cs464_items WHERE item_id = " + id;
 };
+
+exports.getCreateItemQuery = function(name, description, price)
+{
+  return "INSERT INTO cs464_items (name, description, price) " +
+      "VALUES ('" + name + "', '" + description + "', '" + price + "')";
+};
