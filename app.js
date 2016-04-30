@@ -7,6 +7,11 @@ var bodyParser = require('body-parser');
 
 var routes = require('./routes/index');
 var users = require('./routes/users');
+var items = require('./routes/items');
+var groups = require('./routes/groups');
+var transactions = require('./routes/transactions');
+var clients = require('./routes/clients');
+var employees = require('./routes/employees');
 
 var hbs = require('hbs');
 hbs.registerPartials(__dirname + '/views/partials');
@@ -27,6 +32,11 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', routes);
 app.use('/users', users);
+app.use('/items', items);
+app.use('/groups', groups);
+app.use('/transactions', transactions);
+app.use('/clients', clients);
+app.use('/employees', employees);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
