@@ -29,7 +29,7 @@ router.get('/item/', function(req, res, next)
   });
 });
 
-router.get('/createitem', function(req, res, next)
+router.get('/create', function(req, res, next)
 {
   var navbar = new NavbarHelper();
   navbar.setOptions('default');
@@ -37,7 +37,7 @@ router.get('/createitem', function(req, res, next)
   res.render('createitem', {title: 'Create Item', optionLinks: navbar.getOptions()});
 });
 
-router.post('/createitem', function(req, res)
+router.post('/create', function(req, res)
 {
   var navbar = new NavbarHelper();
   navbar.setOptions('default');
@@ -52,6 +52,15 @@ router.post('/createitem', function(req, res)
     console.log(query);
     res.render('createitem', {title: 'Create Item', optionLinks: navbar.getOptions(), alertName: name, createPass: createPass})
   });
+});
+
+router.post('/delete/', function(req, res)
+{
+  var navbar = new NavbarHelper();
+  navbar.setOptions('default');
+
+  var id = req.body.id;
+
 });
 
 module.exports = router;
