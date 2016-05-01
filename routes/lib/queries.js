@@ -95,13 +95,13 @@ exports.getDeleteGroupQuery = function(name)
 
 exports.getMoneyLostOnInventoryUpdatesQuery  = function()
 {
-  return "SELECT cs464_employees.employee_id," +
-          "cs464_employees.first_name as first_name, " +
-          "cs464_employees.last_name as last_name, " +
-          "SUM(neg_updates.quantity_change * cs464_items.price) as sum " +
-          "FROM (SELECT * FROM cs464_updates WHERE quantity_change < 0) neg_updates " +
-          "INNER JOIN cs464_employees ON cs464_employees.employee_id = neg_updates.employee_id " +
-          "INNER JOIN cs464_items ON cs464_items.item_id = neg_updates.item_id " +
-          "GROUP BY employee_id " +
+  return "SELECT cs464_employees.employee_id as employee_id,\n" +
+          "cs464_employees.first_name as first_name,\n" +
+          "cs464_employees.last_name as last_name,\n" +
+          "TRUNCATE(SUM(neg_updates.quantity_change * cs464_items.price), 2) as sum\n" +
+          "FROM (SELECT * FROM cs464_updates WHERE quantity_change < 0) neg_updates\n" +
+          "INNER JOIN cs464_employees ON cs464_employees.employee_id = neg_updates.employee_id\n" +
+          "INNER JOIN cs464_items ON cs464_items.item_id = neg_updates.item_id\n" +
+          "GROUP BY employee_id\n" +
           "ORDER BY sum;";
 };

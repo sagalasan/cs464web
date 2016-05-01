@@ -119,9 +119,10 @@ exports.deleteGroup = function(name, callback)
   executeQuery(query, callback);
 };
 
-exports.moneyLostOnINventory = function()
+exports.moneyLostOnInventory = function(callback)
 {
-
+  var query = queries.getMoneyLostOnInventoryUpdatesQuery();
+  executeQuery(query, callback);
 };
 
 function executeQuery(query, callback)

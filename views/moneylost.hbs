@@ -1,0 +1,25 @@
+{{>navbar}}
+
+<div class="container-fluid">
+    <div class="container">
+        <h1>Inventory Updates</h1>
+        <p>List of the money lost through inventory updates by employee</p>
+        <table class="table table-bordered table-condensed">
+            <tr>
+                <th>Employee ID</th>
+                <th>Name</th>
+                <th>Sum</th>
+            </tr>
+            {{#rows}}
+                <tr>
+                    <td><a href="/employees/employee?id={{employee_id}}">{{employee_id}}</a></td>
+                    <td>{{first_name}} {{last_name}}</td>
+                    <td>${{sum}}</td>
+                </tr>
+            {{/rows}}
+        </table>
+        <p><strong>Query used:</strong> {{query}}</p>
+    </div>
+</div>
+
+{{>footer}}
