@@ -107,6 +107,18 @@ exports.getItemsInGroup = function(name, callback)
   executeQuery(query, callback);
 };
 
+exports.createGroup = function(name, desc, callback)
+{
+  var query = queries.getCreateGroupQuery(name, desc);
+  executeQuery(query, callback);
+};
+
+exports.deleteGroup = function(name, callback)
+{
+  var query = queries.getDeleteGroupQuery(name);
+  executeQuery(query, callback);
+};
+
 function executeQuery(query, callback)
 {
   pool.getConnection(function (err, connection)

@@ -87,7 +87,7 @@ router.post('/delete/:id', function(req, res, next)
 
   database.deleteItem(id, function(err, query, rows)
   {
-    res.redirect('/items?queryError=true');
+    res.redirect('/items?queryError=' + err);
   });
 });
 

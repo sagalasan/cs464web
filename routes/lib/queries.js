@@ -81,3 +81,14 @@ exports.getItemsInGroupQuery = function(name)
   return "SELECT * FROM cs464_items " +
       "WHERE item_id IN (SELECT item_id FROM cs464_categories WHERE group_name = '" + name + "')";
 };
+
+exports.getCreateGroupQuery = function(name, desc)
+{
+  return "INSERT INTO cs464_groups (name, description) " +
+          "VALUES ('" + name + "', '" + desc + "')";
+};
+
+exports.getDeleteGroupQuery = function(name)
+{
+  return "DELETE FROM cs464_groups WHERE name = '" + name + "'";
+};

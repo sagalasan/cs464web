@@ -8,10 +8,10 @@ router.get('/', function(req, res, next)
 {
   var navbar = new NavbarHelper();
   navbar.setOptions('default');
-
+  var queryError = (req.query.qError === 'true');
   database.getGroups(function(err, query, rows)
   {
-    res.render('groups', {title: 'Groups', optionLinks: navbar.getOptions(), query: query, groups: rows});
+    res.render('groups', {title: 'Groups', optionLinks: navbar.getOptions(), query: query, groups: rows, queryError: queryError});
   });
 });
 
@@ -37,6 +37,27 @@ router.get('/create', function(req, res, next)
   navbar.setOptions('default');
 
   res.render('creategroup', {title: 'Create Group', optionLinks: navbar.getOptions()});
+});
+
+router.post('/create', function(req, res, next)
+{
+  var name = req.body.name;
+  var desc = req.body.description;
+  database.createGroup(name, desc, function(err, query, rows)
+  {
+    res.redirect('/groups');
+  });
+});
+
+router.post('/delete/:name', function(req, res, next)
+{
+  var name = req.params.name;
+  console.log(name);
+  database.deleteGroup(name, function(err, query, rows)
+  {
+    console.log(query + " " + err);
+    res.redirect('/groups?qError=' + err);
+  });
 });
 
 
