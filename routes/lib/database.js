@@ -119,6 +119,11 @@ exports.deleteGroup = function(name, callback)
   executeQuery(query, callback);
 };
 
+exports.moneyLostOnINventory = function()
+{
+
+};
+
 function executeQuery(query, callback)
 {
   pool.getConnection(function (err, connection)
