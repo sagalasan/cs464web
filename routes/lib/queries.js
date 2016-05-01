@@ -70,3 +70,14 @@ exports.getMaximumPriceQuery = function(id)
 {
   return "SELECT MAX(price) as max FROM cs464_transactions WHERE item_id = " + id;
 };
+
+exports.getGroupQuery = function(name)
+{
+  return "SELECT * FROM cs464_groups WHERE name = '" + name + "'";
+};
+
+exports.getItemsInGroupQuery = function(name)
+{
+  return "SELECT * FROM cs464_items " +
+      "WHERE item_id IN (SELECT item_id FROM cs464_categories WHERE group_name = '" + name + "')";
+};

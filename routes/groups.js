@@ -15,4 +15,29 @@ router.get('/', function(req, res, next)
   });
 });
 
+router.get('/group/', function(req, res, next)
+{
+  var navbar = new NavbarHelper();
+  navbar.setOptions('default');
+  var name = req.query.name;
+
+  database.getGroup(name, function(err, query, rows)
+  {
+    database.getItemsInGroup(name, function(iErr, iQuery, iRows)
+    {
+      res.render('group', {title: 'Group', optionLinks: navbar.getOptions(), query: query, group: rows[0],
+      itemsQuery: iQuery, items: iRows});
+    });
+  });
+});
+
+router.get('/create', function(req, res, next)
+{
+  var navbar = new NavbarHelper();
+  navbar.setOptions('default');
+
+  res.render('creategroup', {title: 'Create Group', optionLinks: navbar.getOptions()});
+});
+
+
 module.exports = router;

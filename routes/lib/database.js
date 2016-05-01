@@ -95,6 +95,18 @@ exports.getMaximumPrice = function(id, callback)
   executeQuery(query, callback);
 };
 
+exports.getGroup = function(name, callback)
+{
+  var query = queries.getGroupQuery(name);
+  executeQuery(query, callback);
+};
+
+exports.getItemsInGroup = function(name, callback)
+{
+  var query = queries.getItemsInGroupQuery(name);
+  executeQuery(query, callback);
+};
+
 function executeQuery(query, callback)
 {
   pool.getConnection(function (err, connection)

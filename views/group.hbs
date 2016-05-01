@@ -1,0 +1,28 @@
+{{>navbar}}
+
+<div class="container-fluid">
+    <div class="container">
+        <h3 class="text-center">Group: {{group.name}}</h3>
+        <hr>
+        <p>These are the items currently in this group</p>
+        <table class="table table-bordered table-condensed">
+            <tr>
+                <th>Item ID</th>
+                <th>Name</th>
+                <th>Description</th>
+                <th>Price</th>
+            </tr>
+            {{#items}}
+                <tr>
+                    <td><a href="items/item?id={{item_id}}">{{item_id}}</a></td>
+                    <td>{{name}}</td>
+                    <td>{{description}}</td>
+                    <td>${{price}}</td>
+                </tr>
+            {{/items}}
+        </table>
+        <p class="text-center">Query used: {{itemsQuery}}</p>
+    </div>
+</div>
+
+{{>footer}}
