@@ -43,3 +43,8 @@ exports.getCreateItemQuery = function(name, description, price)
   return "INSERT INTO cs464_items (name, description, price) " +
       "VALUES ('" + name + "', '" + description + "', '" + price + "')";
 };
+
+exports.getDeleteItemQuery = function(id)
+{
+  return "DELETE FROM cs464_items WHERE item_id = " + id;
+};

@@ -64,6 +64,12 @@ exports.createItem = function(name, description, price, callback)
   executeQuery(query, callback);
 };
 
+exports.deleteItem = function(id, callback)
+{
+  var query = queries.getDeleteItemQuery(id);
+  executeQuery(query, callback);
+};
+
 function executeQuery(query, callback)
 {
   pool.getConnection(function (err, connection)

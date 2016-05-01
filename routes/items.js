@@ -4,17 +4,20 @@ var queries = require('./lib/queries');
 var database = require('./lib/database');
 var router = express.Router();
 
-router.get('/', function(req, res, next)
+function renderHome(req, res)
 {
   var navbar = new NavbarHelper();
   navbar.setOptions('default');
   navbar.setActive('Items');
+  var queryError = req.query.queryError;
 
   database.getItems(function(err, query, rows)
   {
-    res.render('items', {title: 'Items', optionLinks: navbar.getOptions(), query: query, items: rows});
+    res.render('items', {title: 'Items', optionLinks: navbar.getOptions(), query: query, items: rows, queryError: queryError});
   });
-});
+}
+
+router.get('/', renderHome);
 
 router.get('/item/', function(req, res, next)
 {
@@ -54,13 +57,16 @@ router.post('/create', function(req, res)
   });
 });
 
-router.post('/delete/', function(req, res)
+router.post('/delete/:id', function(req, res, next)
 {
   var navbar = new NavbarHelper();
   navbar.setOptions('default');
+  var id = req.params.id;
 
-  var id = req.body.id;
-
+  database.deleteItem(id, function(err, query, rows)
+  {
+    res.redirect('/items?queryError=true');
+  });
 });
 
 module.exports = router;
