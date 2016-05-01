@@ -7,7 +7,8 @@ var pool = mysql.createPool({
   password: 'impass',
   database: 'sagalasan',
   connectionLimit: 100,
-  supportBigNumbers: true
+  supportBigNumbers: true,
+  multipleStatements: true
 });
 
 exports.getClients = function(callback)
@@ -67,6 +68,30 @@ exports.createItem = function(name, description, price, callback)
 exports.deleteItem = function(id, callback)
 {
   var query = queries.getDeleteItemQuery(id);
+  executeQuery(query, callback);
+};
+
+exports.getTransactionsItem = function(id, callback)
+{
+  var query = queries.getTransactionsItemQuery(id);
+  executeQuery(query, callback);
+};
+
+exports.getAveragePrice = function(id, callback)
+{
+  var query = queries.getAveragePriceQuery(id);
+  executeQuery(query, callback);
+};
+
+exports.getMinimumPrice = function(id, callback)
+{
+  var query = queries.getMinimumPriceQuery(id);
+  executeQuery(query, callback);
+};
+
+exports.getMaximumPrice = function(id, callback)
+{
+  var query = queries.getMaximumPriceQuery(id);
   executeQuery(query, callback);
 };
 

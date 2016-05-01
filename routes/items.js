@@ -19,6 +19,11 @@ function renderHome(req, res)
 
 router.get('/', renderHome);
 
+function renderItemPage(req, res)
+{
+
+};
+
 router.get('/item/', function(req, res, next)
 {
   var navbar = new NavbarHelper();
@@ -28,7 +33,24 @@ router.get('/item/', function(req, res, next)
   database.getItem(id, function(err, query, rows)
   {
     var item = rows[0];
-    res.render('item', {title: 'Item', optionLinks: navbar.getOptions(), query: query, item: item});
+    database.getTransactionsItem(id, function(tErr, tQuery, transactions)
+    {
+      database.getAveragePrice(id, function(aErr, avgQuery, avg)
+      {
+        database.getMinimumPrice(id, function(minErr, minQuery, min)
+        {
+          database.getMaximumPrice(id, function(maxErr, maxQuery, max)
+          {
+            var avgPrice = parseFloat(Math.round(avg[0].average * 100) / 100).toFixed(2);
+            var minPrice = parseFloat(Math.round(min[0].min * 100) / 100).toFixed(2);
+            var maxPrice = parseFloat(Math.round(max[0].max * 100) / 100).toFixed(2);
+            res.render('item', {title: 'Item', optionLinks: navbar.getOptions(), tQuery: tQuery, item: item,
+              transactions: transactions, avgPrice: avgPrice, minPrice: minPrice,
+              maxPrice: maxPrice, avgPriceQuery: avgQuery, minPriceQuery: minQuery, maxPriceQuery: maxQuery});
+          });
+        });
+      });
+    });
   });
 });
 

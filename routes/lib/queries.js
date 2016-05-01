@@ -23,6 +23,13 @@ exports.getTransactionsQuery = function()
   return "SELECT * FROM cs464_transactions ORDER BY date DESC LIMIT 100";
 };
 
+exports.getTransactionsItemQuery = function(item_id)
+{
+  return "SELECT client_id, employee_id, date, quantity, price, order_type FROM cs464_transactions " +
+      "WHERE item_id = " + item_id + " " +
+          "ORDER BY date DESC LIMIT 20";
+};
+
 exports.getItemsQuery = function()
 {
   return "SELECT * FROM cs464_items";
@@ -47,4 +54,19 @@ exports.getCreateItemQuery = function(name, description, price)
 exports.getDeleteItemQuery = function(id)
 {
   return "DELETE FROM cs464_items WHERE item_id = " + id;
+};
+
+exports.getAveragePriceQuery = function(id)
+{
+  return "SELECT AVG(price) as average FROM cs464_transactions WHERE item_id = " + id;
+};
+
+exports.getMinimumPriceQuery = function(id)
+{
+  return "SELECT MIN(price) as min FROM cs464_transactions WHERE item_id = " + id;
+};
+
+exports.getMaximumPriceQuery = function(id)
+{
+  return "SELECT MAX(price) as max FROM cs464_transactions WHERE item_id = " + id;
 };
