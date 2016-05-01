@@ -92,3 +92,15 @@ exports.getDeleteGroupQuery = function(name)
 {
   return "DELETE FROM cs464_groups WHERE name = '" + name + "'";
 };
+
+exports.getMoneyLostOnInventoryUpdatesQuery  = function()
+{
+  return "SELECT cs464_employees.first_name as first_name, " +
+          "cs464_employees.last_name as last_name, " +
+          "SUM(neg_updates.quantity_change * cs464_items.price) as sum " +
+          "FROM (SELECT * FROM cs464_updates WHERE quantity_change < 0) neg_updates " +
+          "INNER JOIN cs464_employees ON cs464_employees.employee_id = neg_updates.employee_id " +
+          "INNER JOIN cs464_items ON cs464_items.item_id = neg_updates.item_id " +
+          "GROUP BY first_name, last_name " +
+          "ORDER BY sum;";
+};
