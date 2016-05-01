@@ -9,7 +9,7 @@ function renderHome(req, res)
   var navbar = new NavbarHelper();
   navbar.setOptions('default');
   navbar.setActive('Items');
-  var queryError = req.query.queryError;
+  var queryError = (req.query.queryError === 'true');
 
   database.getItems(function(err, query, rows)
   {
