@@ -125,6 +125,12 @@ exports.moneyLostOnInventory = function(callback)
   executeQuery(query, callback);
 };
 
+exports.createTransaction = function(employeeId, clientId, itemId, quantity, price, orderType, callback)
+{
+  var query = queries.getCreateTransactionQuery(employeeId, clientId, itemId, quantity, price, orderType);
+  executeQuery(query, callback);
+};
+
 function executeQuery(query, callback)
 {
   pool.getConnection(function (err, connection)

@@ -1,0 +1,52 @@
+{{>navbar}}
+
+<div class="container-fluid">
+    <div class="container">
+        <h1>Create Transaction</h1>
+
+        <form role="form" action="/transactions/create" method="post">
+            <div class="form-group">
+                <label for="employee">Employee (select one):</label>
+                <select class="form-control" id="employee" name="employee">
+                    {{#employees}}
+                        <option>{{employee_id}}</option>
+                    {{/employees}}
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="client">Clients (select one):</label>
+                <select class="form-control" id="client" name="client">
+                    {{#clients}}
+                        <option>{{client_id}}</option>
+                    {{/clients}}
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="item">Items: (select one):</label>
+                <select class="form-control" id="item" name="item">
+                    {{#items}}
+                        <option>{{item_id}}</option>
+                    {{/items}}
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="quantity">Quantity:</label>
+                <span></span><input class="form-control" type="number" step="1" min="1" value="1" id="quantity" name="quantity">
+            </div>
+            <div class="form-group">
+                <label for="price">Price:</label>
+                <span>$</span><input class="form-control" type="number" step=".01" min=".01" value="1.00" id="price" name="price">
+            </div>
+            <div class="form-group">
+                <label for="orderType">Order type:</label>
+                <select class="form-control" id="orderType" name="orderType">
+                    <option>sell</option>
+                    <option>buy</option>
+                </select>
+            </div>
+            <button type="submit" class="btn btn-default">Submit</button>
+        </form>
+    </div>
+</div>
+
+{{>footer}}

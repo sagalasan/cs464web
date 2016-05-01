@@ -105,3 +105,9 @@ exports.getMoneyLostOnInventoryUpdatesQuery  = function()
           "GROUP BY employee_id\n" +
           "ORDER BY sum;";
 };
+
+exports.getCreateTransactionQuery = function(employeeId, clientId, itemId, quantity, price, orderType)
+{
+  return "INSERT INTO cs464_transactions(employee_id, client_id, item_id, date, quantity, price, order_type) " +
+          "VALUES ('" + employeeId + "', '" + clientId + "', '" + itemId + "', NOW(), '" + quantity + "', '" + price + "', '" + orderType + "')";
+};
