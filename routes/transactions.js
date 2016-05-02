@@ -63,4 +63,12 @@ router.get('/moneylost', function(req, res, next)
   });
 });
 
+router.get('/updates', function(req, res, next)
+{
+  database.inventoryUpdates(function(err, query, rows)
+  {
+    res.render('inventoryupdates', {title: 'Inventory Updates', query: query, updates: rows});
+  });
+});
+
 module.exports = router;

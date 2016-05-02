@@ -133,3 +133,8 @@ exports.getDeleteEmployeeQuery = function(id)
 {
   return "DELETE FROM cs464_employees WHERE employee_id = " + id;
 };
+
+exports.getInventoryUpdatesQuery = function()
+{
+  return "SELECT * FROM cs464_updates ORDER BY date DESC LIMIT 100";
+};

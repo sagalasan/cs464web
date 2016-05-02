@@ -155,6 +155,12 @@ exports.deleteEmployee = function(id, callback)
   executeQuery(query, callback);
 };
 
+exports.inventoryUpdates = function(callback)
+{
+  var query = queries.getInventoryUpdatesQuery();
+  executeQuery(query, callback);
+};
+
 function executeQuery(query, callback)
 {
   pool.getConnection(function (err, connection)

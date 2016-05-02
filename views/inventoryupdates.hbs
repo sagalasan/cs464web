@@ -1,0 +1,28 @@
+{{>navbar}}
+
+<div class="container-fluid">
+    <div class="container">
+        <h1>Inventory Updates</h1>
+        <p>Most recent 100 inventory updates</p>
+        <table class="table table-bordered table-condensed">
+            <tr>
+                <th>Item ID</th>
+                <th>Employee ID</th>
+                <th>Date</th>
+                <th>Quantity Changed</th>
+            </tr>
+            {{#updates}}
+                <tr>
+                    <td><a href="/items/item?id="{{item_id}}>{{item_id}}</a></td>
+                    <td><a href="/employees/employee?id={{employee_id}}">{{employee_id}}</a></td>
+                    <td>{{date}}</td>
+                    <td>{{quantity_change}}</td>
+                </tr>
+            {{/updates}}
+        </table>
+        <strong>Query used:</strong>
+        <pre style="font-size:130%;">{{query}}</pre>
+    </div>
+</div>
+
+{{>footer}}
