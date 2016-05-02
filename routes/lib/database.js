@@ -62,13 +62,13 @@ exports.getItem = function (id, callback)
 exports.createItem = function(name, description, price, callback)
 {
   var query = queries.getCreateItemQuery(name, description, price);
-  executeQuery(query, callback);
+  executeTransaction(query, callback);
 };
 
 exports.deleteItem = function(id, callback)
 {
   var query = queries.getDeleteItemQuery(id);
-  executeQuery(query, callback);
+  executeTransaction(query, callback);
 };
 
 exports.getTransactionsItem = function(id, callback)
@@ -110,13 +110,13 @@ exports.getItemsInGroup = function(name, callback)
 exports.createGroup = function(name, desc, callback)
 {
   var query = queries.getCreateGroupQuery(name, desc);
-  executeQuery(query, callback);
+  executeTransaction(query, callback);
 };
 
 exports.deleteGroup = function(name, callback)
 {
   var query = queries.getDeleteGroupQuery(name);
-  executeQuery(query, callback);
+  executeTransaction(query, callback);
 };
 
 exports.moneyLostOnInventory = function(callback)
@@ -128,31 +128,31 @@ exports.moneyLostOnInventory = function(callback)
 exports.createTransaction = function(employeeId, clientId, itemId, quantity, price, orderType, callback)
 {
   var query = queries.getCreateTransactionQuery(employeeId, clientId, itemId, quantity, price, orderType);
-  executeQuery(query, callback);
+  executeTransaction(query, callback);
 };
 
 exports.createClient = function(name, address, callback)
 {
   var query = queries.getCreateClientQuery(name, address);
-  executeQuery(query, callback);
+  executeTransaction(query, callback);
 };
 
 exports.deleteClient = function(id, callback)
 {
   var query = queries.getDeleteClientQuery(id);
-  executeQuery(query, callback);
+  executeTransaction(query, callback);
 };
 
 exports.createEmployee = function(firstName, lastName, address, callback)
 {
   var query = queries.getCreateEmployeeQuery(firstName, lastName, address);
-  executeQuery(query, callback);
+  executeTransaction(query, callback);
 };
 
 exports.deleteEmployee = function(id, callback)
 {
   var query = queries.getDeleteEmployeeQuery(id);
-  executeQuery(query, callback);
+  executeTransaction(query, callback);
 };
 
 exports.inventoryUpdates = function(callback)
@@ -206,5 +206,40 @@ function executeQuery(query, callback)
       console.log("\nQuery: " + query);
       callback(false, query, rows); // Successful callback
     });
+    connection.release();
   });
-}
+};
+
+function executeTransaction(query, callback)
+{
+  var transaction = "START TRANSACTION;\n";
+  var commit = ";\nCOMMIT;";
+  var temp = transaction + query + commit;
+  query = temp;
+  var rollback = "ROLLBACK;";
+
+  pool.getConnection(function (err, connection)
+  {
+    if(err) {
+      console.log(err);
+      callback(true, query);
+      return;
+    }
+
+    connection.query(query, function(err, rows)
+    {
+      console.log("\nQuery: " + query);
+      if(err) {
+        connection.query(rollback, function (err, rows) {
+        });
+
+        console.log(err);
+        callback(true, query);
+        return;
+      }
+
+      callback(false, query, rows); // Successful callback
+    });
+    connection.release();
+  });
+};
