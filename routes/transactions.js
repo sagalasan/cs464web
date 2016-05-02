@@ -71,4 +71,20 @@ router.get('/updates', function(req, res, next)
   });
 });
 
+router.get('/buy', function(req, res, next)
+{
+  database.orders('buy', function(err, query, rows)
+  {
+    res.render('buyorders', {title: 'Buy Orders', query: query, orders: rows});
+  });
+});
+
+router.get('/sell', function(req, res, next)
+{
+  database.orders('sell', function(err, query, rows)
+  {
+    res.render('sellorders', {title: 'Sell Orders', query: query, orders: rows});
+  });
+});
+
 module.exports = router;

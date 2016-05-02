@@ -185,6 +185,12 @@ exports.totalSellClient = function(clientId, callback)
   executeQuery(query, callback);
 };
 
+exports.orders = function(orderType, callback)
+{
+  var query = queries.getTransactionsOrderTypeQuery(orderType);
+  executeQuery(query, callback);
+};
+
 function executeQuery(query, callback)
 {
   pool.getConnection(function (err, connection)

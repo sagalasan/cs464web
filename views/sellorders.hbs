@@ -2,8 +2,8 @@
 
 <div class="container-fluid">
     <div class="container">
-        <h1>Transactions</h1>
-        <p>These are the last 100 transactions</p>
+        <h1>Sell Orders</h1>
+        <p>These are the last 100 sell orders</p>
         <table class="table table-bordered table-condensed">
             <tr>
                 <th>Item ID</th>
@@ -12,9 +12,8 @@
                 <th>Date</th>
                 <th>Quantity</th>
                 <th>Price</th>
-                <th>Order type</th>
             </tr>
-            {{#transactions}}
+            {{#orders}}
                 <tr>
                     <td><a href="/items/item?id={{item_id}}">{{item_id}}</a></td>
                     <td><a href="/clients/client?id={{client_id}}">{{client_id}}</a></td>
@@ -22,12 +21,12 @@
                     <td>{{date}}</td>
                     <td>{{quantity}}</td>
                     <td>{{price}}</td>
-                    <td>{{order_type}}</td>
                 </tr>
-            {{/transactions}}
+            {{/orders}}
         </table>
         <strong>Query Used:</strong>
         <pre>{{query}}</pre>
     </div>
 </div>
+
 {{>footer}}

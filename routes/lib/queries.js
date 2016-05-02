@@ -162,3 +162,10 @@ exports.getTotalBuyClientQuery = function(clientId)
   return "SELECT TRUNCATE(SUM(price * quantity), 2) as orders FROM cs464_transactions\n" +
           "WHERE order_type = 'buy' AND client_id = " + clientId;
 };
+
+exports.getTransactionsOrderTypeQuery = function(orderType)
+{
+  return "SELECT * FROM cs464_transactions\n" +
+          "WHERE order_type = '" + orderType + "'" +
+      "ORDER BY date DESC LIMIT 100";
+};
