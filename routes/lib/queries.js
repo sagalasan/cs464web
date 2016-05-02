@@ -122,3 +122,14 @@ exports.getDeleteClientQuery = function(id)
 {
   return "DELETE FROM cs464_clients WHERE client_id = " + id;
 };
+
+exports.getCreateEmployeeQuery = function(firstName, lastName, address)
+{
+  return "INSERT INTO cs464_employees (first_name, last_name, address) " +
+          "VALUES ('" + firstName + "', '" + lastName + "', '" + address + "')";
+};
+
+exports.getDeleteEmployeeQuery = function(id)
+{
+  return "DELETE FROM cs464_employees WHERE id = " id;
+};
