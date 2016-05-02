@@ -2,7 +2,51 @@
 
 <div class="container-fluid">
     <div class="container">
+        <h1 class="text-center">{{employee.first_name}} {{employee.last_name}}</h1>
         <p>employee_id: {{employee.employee_id}}</p>
+        <br>
+        <p>Here are the last 20 transactions involving this employee</p>
+        <table class="table table-bordered table-condensed">
+            <tr>
+                <th>
+                <th>Item ID</th>
+                <th>Client ID</th>
+                <th>Date</th>
+                <th>Quantity</th>
+                <th>Price</th>
+                <th>Order type</th>
+                </th>
+            </tr>
+            {{#transactions}}
+                <tr>
+                    <td><a href="/items/item?id={{item_id}}">{{item_id}}</a></td>
+                    <td><a href="/clients/client?id={{client_id}}">{{client_id}}</a></td>
+                    <td>{{date}}</td>
+                    <td>{{quantity}}</td>
+                    <td>{{price}}</td>
+                    <td>{{order_type}}</td>
+                </tr>
+            {{/transactions}}
+        </table>
+        <br>
+        <p>Inventory Updates</p>
+        <table class="table table-bordered table-condensed">
+            <tr>
+                <th>Item ID</th>
+                <th>Date</th>
+                <th>Quantity Change</th>
+            </tr>
+            {{#updates}}
+                <tr>
+                    <td><a href="/items/item?id={{item_id}}">{{item_id}}</a></td>
+                    <td>{{date}}</td>
+                    <td>{{quantity_change}}</td>
+                </tr>
+            {{/updates}}
+        </table>
+        <strong>Queries Used:</strong>
+        <pre>{{transactionsQuery}}</pre>
+        <pre>{{updatesQuery}}</pre>
     </div>
 </div>
 

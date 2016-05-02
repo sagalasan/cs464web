@@ -191,6 +191,18 @@ exports.orders = function(orderType, callback)
   executeQuery(query, callback);
 };
 
+exports.transactionsEmployee = function(employeeId, callback)
+{
+  var query = queries.getTransactionsEmployeeQuery(employeeId);
+  executeQuery(query, callback);
+};
+
+exports.updatesEmployee = function(employeeId, callback)
+{
+  var query = queries.getInventoryUpdatesEmployeeQuery(employeeId);
+  executeQuery(query, callback);
+};
+
 function executeQuery(query, callback)
 {
   pool.getConnection(function (err, connection)

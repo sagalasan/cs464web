@@ -169,3 +169,17 @@ exports.getTransactionsOrderTypeQuery = function(orderType)
           "WHERE order_type = '" + orderType + "'" +
       "ORDER BY date DESC LIMIT 100";
 };
+
+exports.getTransactionsEmployeeQuery = function(employeeId)
+{
+  return "SELECT item_id, client_id, date, quantity, price, order_type FROM cs464_transactions\n" +
+      "WHERE employee_id = " + employeeId + "\n" +
+      "ORDER BY date DESC LIMIT 20";
+};
+
+exports.getInventoryUpdatesEmployeeQuery = function(employeeId)
+{
+  return "SELECT item_id, date, quantity_change FROM cs464_updates\n" +
+      "WHERE employee_id = " + employeeId + "\n" +
+      "ORDER BY date DESC LIMIT 20";
+};

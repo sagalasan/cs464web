@@ -6,14 +6,19 @@ var router = express.Router();
 
 router.get('/employee/', function(req, res, next)
 {
-  var navbar = new NavbarHelper();
-  navbar.setOptions('default');
   var id = req.query.id;
 
   database.getEmployee(id, function(err, query, rows)
   {
-    var employee = rows[0];
-    res.render('employee', {title: 'Employee', optionLinks: navbar.getOptions(), query: query, employee: employee});
+    database.transactionsEmployee(id, function(tErr, tQuery, tRows)
+    {
+      database.updatesEmployee(id, function(uErr, uQuery, uRows)
+      {
+        var employee = rows[0];
+        res.render('employee', {title: 'Employee', query: query, employee: employee, transactionsQuery: tQuery,
+                    updatesQuery: uQuery, transactions: tRows, updates: uRows});
+      });
+    });
   });
 });
 
