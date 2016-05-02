@@ -69,5 +69,13 @@ router.post('/delete/:id', function (req, res, next) {
   });
 });
 
+router.get('/orders', function(req, res, next)
+{
+  database.clientsOrders(function(err, query, rows)
+  {
+    res.render('orders', {title: "Orders", query: query, orders: rows});
+  });
+});
+
 
 module.exports = router;

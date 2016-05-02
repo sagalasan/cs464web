@@ -183,3 +183,13 @@ exports.getInventoryUpdatesEmployeeQuery = function(employeeId)
       "WHERE employee_id = " + employeeId + "\n" +
       "ORDER BY date DESC LIMIT 20";
 };
+
+exports.getClientsOrdersQuery = function()
+{
+  return "SELECT client_id, COUNT(*) as count\n" +
+  "FROM (SELECT item_id, client_id, employee_id, date, quantity, price\n" +
+  "FROM cs464_transactions\n" +
+  "WHERE order_type = 'sell') sell_orders\n" +
+  "GROUP BY client_id\n" +
+  "ORDER BY count DESC;";
+};

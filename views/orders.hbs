@@ -1,0 +1,23 @@
+{{>navbar}}
+
+<div class="container-fluid">
+    <div class="container">
+        <h1>Aggregated Orders</h1>
+        <p>This shows the total number of sell orders for each client</p>
+        <table class="table table-bordered table-condensed">
+            <tr>
+                <th>Client ID</th>
+                <th>Count</th>
+            </tr>
+            {{#orders}}
+                <tr>
+                    <td><a href="/clients/client?id={{client_id}}">{{client_id}}</a></td>
+                    <td>{{count}}</td>
+                </tr>
+            {{/orders}}
+        </table>
+        <strong>Query Used:</strong>
+        <pre>{{query}}</pre>
+    </div>
+</div>
+{{>footer}}

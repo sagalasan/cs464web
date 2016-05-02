@@ -203,6 +203,12 @@ exports.updatesEmployee = function(employeeId, callback)
   executeQuery(query, callback);
 };
 
+exports.clientsOrders = function(callback)
+{
+  var query = queries.getClientsOrdersQuery();
+  executeQuery(query, callback);
+};
+
 function executeQuery(query, callback)
 {
   pool.getConnection(function (err, connection)
@@ -213,6 +219,7 @@ function executeQuery(query, callback)
       return;
     }
 
+    console.log("\nQuery: " + query);
     connection.query(query, function(err, rows)
     {
       if(err)
@@ -221,7 +228,6 @@ function executeQuery(query, callback)
         callback(true, query);
         return;
       }
-      console.log("\nQuery: " + query);
       callback(false, query, rows); // Successful callback
     });
     connection.release();
