@@ -167,6 +167,24 @@ exports.transactionsClient = function(clientId, callback)
   executeQuery(query, callback);
 };
 
+exports.transactionsClientSum = function(clientId, callback)
+{
+  var query = queries.getTotalTransactionsClientQuery(clientId);
+  executeQuery(query, callback);
+};
+
+exports.totalBuyClient = function(clientId, callback)
+{
+  var query = queries.getTotalBuyClientQuery(clientId);
+  executeQuery(query, callback);
+};
+
+exports.totalSellClient = function(clientId, callback)
+{
+  var query = queries.getTotalSellClientQuery(clientId);
+  executeQuery(query, callback);
+};
+
 function executeQuery(query, callback)
 {
   pool.getConnection(function (err, connection)
@@ -185,6 +203,7 @@ function executeQuery(query, callback)
         callback(true, query);
         return;
       }
+      console.log("\nQuery: " + query);
       callback(false, query, rows); // Successful callback
     });
   });

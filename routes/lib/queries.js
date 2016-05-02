@@ -145,3 +145,20 @@ exports.getTransactionsClientQuery = function(clientId)
           "WHERE client_id = " + clientId + "\n" +
           "ORDER BY date DESC LIMIT 20";
 };
+
+exports.getTotalTransactionsClientQuery = function(clientId)
+{
+  return "SELECT COUNT(client_id) as count FROM cs464_transactions WHERE client_id = " + clientId;
+};
+
+exports.getTotalSellClientQuery = function(clientId)
+{
+  return "SELECT TRUNCATE(SUM(price * quantity), 2) as sales FROM cs464_transactions\n" +
+          "WHERE order_type = 'sell' AND client_id = " + clientId;
+};
+
+exports.getTotalBuyClientQuery = function(clientId)
+{
+  return "SELECT TRUNCATE(SUM(price * quantity), 2) as orders FROM cs464_transactions\n" +
+          "WHERE order_type = 'buy' AND client_id = " + clientId;
+};

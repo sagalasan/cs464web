@@ -2,7 +2,40 @@
 
 <div class="container-fluid">
     <div class="container">
-        <p>client_id: {{client.client_id}}</p>
+        <h3 class="text-center">{{client.name}}</h3>
+        <hr>
+        <p>Client ID: {{client.client_id}}</p>
+        <p>Total Orders: {{totalOrders}}</p>
+        <p>Total Sell: ${{totalSell}}</p>
+        <p>Total Buy: ${{totalBuy}}</p>
+        <br>
+
+        <p>Last 20 transactions involving this client</p>
+        <table class="table table-bordered table-condensed">
+            <tr>
+                <th>Item ID</th>
+                <th>Employee ID</th>
+                <th>Date</th>
+                <th>Quantity</th>
+                <th>Price</th>
+                <th>Order type</th>
+            </tr>
+            {{#transactions}}
+                <tr>
+                    <td><a href="/items/item?id={{item_id}}">{{item_id}}</a></td>
+                    <td><a href="/employees/employee?id={{employee_id}}">{{employee_id}}</a></td>
+                    <td>{{date}}</td>
+                    <td>{{quantity}}</td>
+                    <td>{{price}}</td>
+                    <td>{{order_type}}</td>
+                </tr>
+            {{/transactions}}
+        </table>
+        <strong>Queries Used:</strong>
+        <pre>{{totalOrdersQuery}}</pre>
+        <pre>{{totalSellQuery}}</pre>
+        <pre>{{totalBuyQuery}}</pre>
+        <pre>{{transactionsQuery}}</pre>
     </div>
 </div>
 
