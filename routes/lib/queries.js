@@ -1,6 +1,6 @@
 exports.getClientsQuery = function()
 {
-  return "SELECT * FROM cs464_clients;";
+  return "SELECT * FROM cs464_clients ORDER BY client_id ASC;";
 };
 
 exports.getEmployeesQuery = function()
