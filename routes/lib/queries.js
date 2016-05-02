@@ -25,8 +25,8 @@ exports.getTransactionsQuery = function()
 
 exports.getTransactionsItemQuery = function(item_id)
 {
-  return "SELECT client_id, employee_id, date, quantity, price, order_type FROM cs464_transactions " +
-      "WHERE item_id = " + item_id + " " +
+  return "SELECT client_id, employee_id, date, quantity, price, order_type FROM cs464_transactions\n" +
+      "WHERE item_id = " + item_id + "\n" +
           "ORDER BY date DESC LIMIT 20";
 };
 
