@@ -131,5 +131,5 @@ exports.getCreateEmployeeQuery = function(firstName, lastName, address)
 
 exports.getDeleteEmployeeQuery = function(id)
 {
-  return "DELETE FROM cs464_employees WHERE id = " id;
+  return "DELETE FROM cs464_employees WHERE employee_id = " + id;
 };
