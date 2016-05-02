@@ -131,6 +131,18 @@ exports.createTransaction = function(employeeId, clientId, itemId, quantity, pri
   executeQuery(query, callback);
 };
 
+exports.createClient = function(name, address, callback)
+{
+  var query = queries.getCreateClientQuery(name, address);
+  executeQuery(query, callback);
+};
+
+exports.deleteClient = function(id, callback)
+{
+  var query = queries.getDeleteClientQuery(id);
+  executeQuery(query, callback);
+};
+
 function executeQuery(query, callback)
 {
   pool.getConnection(function (err, connection)

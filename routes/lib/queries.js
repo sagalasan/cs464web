@@ -111,3 +111,14 @@ exports.getCreateTransactionQuery = function(employeeId, clientId, itemId, quant
   return "INSERT INTO cs464_transactions(employee_id, client_id, item_id, date, quantity, price, order_type) " +
           "VALUES ('" + employeeId + "', '" + clientId + "', '" + itemId + "', NOW(), '" + quantity + "', '" + price + "', '" + orderType + "')";
 };
+
+exports.getCreateClientQuery = function(name, address)
+{
+  return "INSERT INTO cs464_clients(name, address) " +
+          "VALUES ('" + name + "', '" + address + "')";
+};
+
+exports.getDeleteClientQuery = function(id)
+{
+  return "DELETE FROM cs464_clients WHERE client_id = " + id;
+};
