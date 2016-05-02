@@ -143,6 +143,18 @@ exports.deleteClient = function(id, callback)
   executeQuery(query, callback);
 };
 
+exports.createEmployee = function(firstName, lastName, address, callback)
+{
+  var query = queries.getCreateEmployeeQuery(firstName, lastName, address);
+  executeQuery(query, callback);
+};
+
+exports.deleteEmployee = function(id, callback)
+{
+  var query = queries.getDeleteEmployeeQuery(id);
+  executeQuery(query, callback);
+};
+
 function executeQuery(query, callback)
 {
   pool.getConnection(function (err, connection)
