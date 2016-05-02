@@ -138,3 +138,10 @@ exports.getInventoryUpdatesQuery = function()
 {
   return "SELECT * FROM cs464_updates ORDER BY date DESC LIMIT 100";
 };
+
+exports.getTransactionsClientQuery = function(clientId)
+{
+  return "SELECT item_id, employee_id, date, quantity, price, order_type FROM cs464_transactions\n" +
+          "WHERE client_id = " + clientId + "\n" +
+          "ORDER BY date DESC LIMIT 20";
+};

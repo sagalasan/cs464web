@@ -161,6 +161,12 @@ exports.inventoryUpdates = function(callback)
   executeQuery(query, callback);
 };
 
+exports.transactionsClient = function(clientId, callback)
+{
+  var query = queries.getTransactionsClientQuery(clientId);
+  executeQuery(query, callback);
+};
+
 function executeQuery(query, callback)
 {
   pool.getConnection(function (err, connection)
